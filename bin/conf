@@ -1,0 +1,6 @@
+contents="www-contents-repo"
+contents_owner="m1e0jp"
+wwwdir="/var/www"
+contentsdir="$wwwdir/$contents"
+appdir="$wwwdir/sh"
+
