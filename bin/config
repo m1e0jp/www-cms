@@ -1,6 +1,6 @@
 contents_repo="www-contents"
 contents_owner="m1e0jp"
-homedir=`echo ~`
+homedir="/home/m"
 wwwdir="$homedir/www"
 localcmsdir="$wwwdir/cms"
 publicdir="$wwwdir/_public"
