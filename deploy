@@ -1,12 +1,32 @@
 #!/bin/bash -eux
 
-source "$(dirname $0)/bin/conf"
+### 設定ファイルをロード
+source `dirname $0`"/bin/config"
 
-[ "$USER" = "root" ]  # USER MUST BE ROOT
+### INSTALL THIS SYSTEM
+mkdir -p "$appdir"
+sudo rsync -av --delete "$rsync_fromdir/" "$appdir/"
+sudo chown www-data:www-data "$appdir" -R
+
+  ### RENAME FETHC CGI
+cd "$appdir"
+if [ -e "$localcmsdir/rnd" ]; then
+  rnd=$(cat "$localcmsdir/rnd")
+else
+  rnd=$(cat /dev/urandom | tr -cd 0-9a-zA-Z | head -c 64)
+  echo $rnd >"$localcmsdir/rnd"
+fi
+sudo mv "fetch" "fetch_$rnd.cgi"
 
 ### PULL DATA
-rm -rf "${contentsdir:?}"
-cd "$wwwdir"
-git clone "git@github.com:$contents_owner/$contents"
-chown www-data:www-data "$contentsdir" -R
+mkdir -p "$tmpdir"
+cd "$_"
+git clone "git@github.com:$contents_owner/$contents_repo"
+sudo rm -rf "${contentsdir:?}"
+sudo mv "$tmpdir/$contents_repo" "$publicdir"
+sudo chown www-data:www-data "$contentsdir" -R
+rmdir "$tmpdir"
+
+echo "call fetch_$rnd.cgi from GitHub"
+
 

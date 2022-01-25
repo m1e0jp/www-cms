@@ -1,0 +1,11 @@
+contents_repo="www-contents"
+contents_owner="m1e0jp"
+homedir=`echo ~`
+wwwdir="$homedir/www"
+localcmsdir="$wwwdir/cms"
+publicdir="$wwwdir/_public"
+contentsdir="$publicdir/$contents_repo"
+cmsdir="$publicdir/cms"
+rsync_fromdir="$localcmsdir/bin"
+appdir="$publicdir/cms/bin"
+tmpdir="$wwwdir/tmp/$BASHPID"

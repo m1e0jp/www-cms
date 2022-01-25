@@ -1,6 +1,0 @@
-contents_repo="i2u"
-contents_owner="m1e0jp"
-wwwdir="~/www"
-contentsdir="$wwwdir/public_html"
-appdir="$wwwdir/cms"
-
