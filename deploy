@@ -6,7 +6,7 @@ source `dirname $0`"/bin/config"
 ### INSTALL THIS SYSTEM
 mkdir -p "$appdir"
 sudo rsync -av --delete "$rsync_fromdir/" "$appdir/"
-sudo chown www-data:www-data "$appdir" -R
+sudo chown -R www-data:www-data "$appdir"
 
   ### RENAME FETHC CGI
 cd "$appdir"
@@ -24,7 +24,7 @@ cd "$_"
 git clone "git@github.com:$contents_owner/$contents_repo"
 sudo rm -rf "${contentsdir:?}"
 sudo mv "$tmpdir/$contents_repo" "$publicdir"
-sudo chown www-data:www-data "$contentsdir" -R
+sudo chown -R www-data:www-data "$contentsdir"
 rmdir "$tmpdir"
 
 echo "call fetch_$rnd.cgi from GitHub"

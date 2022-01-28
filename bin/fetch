@@ -6,6 +6,6 @@ source "`dirname "$0"`/config"
 
 echo -e 'Content-type: text/html\n\n'
 cd "$contentsdir"
-git pull
+GIT_SSH_COMMAND="$GIT_SSH_COMMAND" git pull  # require git 2.3 or later.
 
 
